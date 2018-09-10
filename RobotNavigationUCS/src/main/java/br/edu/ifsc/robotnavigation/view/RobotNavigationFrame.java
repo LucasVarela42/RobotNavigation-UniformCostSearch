@@ -5,17 +5,21 @@
  */
 package br.edu.ifsc.robotnavigation.view;
 
+import br.edu.ifsc.robotnavigation.controller.PanelGrid;
+
 /**
  *
  * @author Lucas
  */
 public class RobotNavigationFrame extends javax.swing.JFrame {
-
+    PanelGrid buttonsGrid;
     /**
      * Creates new form RobotNavigationFrame
      */
     public RobotNavigationFrame() {
         initComponents();
+        buttonsGrid = new PanelGrid(this.jPanelGrid);
+        pack();
     }
 
     /**
@@ -37,17 +41,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelGrid.setBorder(javax.swing.BorderFactory.createTitledBorder("Navigation"));
-
-        javax.swing.GroupLayout jPanelGridLayout = new javax.swing.GroupLayout(jPanelGrid);
-        jPanelGrid.setLayout(jPanelGridLayout);
-        jPanelGridLayout.setHorizontalGroup(
-            jPanelGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanelGridLayout.setVerticalGroup(
-            jPanelGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
-        );
+        jPanelGrid.setLayout(new java.awt.GridLayout());
 
         jButton2.setText("Start");
 
@@ -83,8 +77,8 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
