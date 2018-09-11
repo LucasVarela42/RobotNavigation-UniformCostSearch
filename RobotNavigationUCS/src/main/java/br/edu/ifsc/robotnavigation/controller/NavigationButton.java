@@ -14,19 +14,13 @@ import javax.swing.JButton;
  */
 public class NavigationButton extends JButton {
 
-    private Icon imagemBotao;
+    private int x;
+    private int y;
 
-    public NavigationButton(String icone) {
+    public NavigationButton(String icone, int x, int y) {
         this.setIcon(new javax.swing.ImageIcon(getClass().getResource(icone)));
-    }
-
-    public NavigationButton(Icon imagemBotao) {
-        this.imagemBotao = imagemBotao;
-        setIcon(imagemBotao);
-    }
-
-    public Icon getImagemBotao() {
-        return imagemBotao;
+        this.x = x;
+        this.y = y;
     }
 
     public void setImagemBotao(String icone) {

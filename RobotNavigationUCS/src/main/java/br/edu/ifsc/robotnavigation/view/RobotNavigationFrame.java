@@ -6,6 +6,8 @@
 package br.edu.ifsc.robotnavigation.view;
 
 import br.edu.ifsc.robotnavigation.controller.PanelGrid;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -34,16 +36,18 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanelGrid = new javax.swing.JPanel();
         jPanelControl = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jButtonStart = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanelGrid.setBorder(javax.swing.BorderFactory.createTitledBorder("Navigation"));
-        jPanelGrid.setLayout(new java.awt.GridLayout());
+        jPanelGrid.setAutoscrolls(true);
+        jPanelGrid.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton2.setText("Start");
+        jButtonStart.setText("Start");
 
         javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
         jPanelControl.setLayout(jPanelControlLayout);
@@ -51,14 +55,14 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlLayout.createSequentialGroup()
                 .addContainerGap(280, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelControlLayout.setVerticalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelControlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
+                .addComponent(jButtonStart)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -121,9 +125,43 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         });
     }
 
+    public PanelGrid getButtonsGrid() {
+        return buttonsGrid;
+    }
+
+    public void setButtonsGrid(PanelGrid buttonsGrid) {
+        this.buttonsGrid = buttonsGrid;
+    }
+
+    public JButton getjButtonStart() {
+        return jButtonStart;
+    }
+
+    public void setjButtonStart(JButton jButtonStart) {
+        this.jButtonStart = jButtonStart;
+    }
+
+    public JPanel getjPanelControl() {
+        return jPanelControl;
+    }
+
+    public void setjPanelControl(JPanel jPanelControl) {
+        this.jPanelControl = jPanelControl;
+    }
+
+    public JPanel getjPanelGrid() {
+        return jPanelGrid;
+    }
+
+    public void setjPanelGrid(JPanel jPanelGrid) {
+        this.jPanelGrid = jPanelGrid;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonStart;
     private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelGrid;
     // End of variables declaration//GEN-END:variables

@@ -6,10 +6,12 @@
 package br.edu.ifsc.robotnavigation.controller;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 /**
  *
@@ -17,21 +19,22 @@ import javax.swing.JPanel;
  */
 public class PanelGrid extends JPanel {
 
-    private static final int SIDE = 10;
+    private static final int SIDE = 15;
     private static final String BACKGROUND_IMG = "/background.png";
     private static final Dimension BTN_PREF_SIZE = new Dimension(32, 32);
     private NavigationButton button;
 
     public PanelGrid(JPanel panel) {
-        panel.setLayout(new GridLayout(SIDE, SIDE));
-        addButtons(panel, SIDE);
+        panel.setLayout(new GridLayout(SIDE, SIDE, 0, 0));
+        addButtons(panel);
     }
 
-    private void addButtons(JPanel panel, int tamanho) {
-        for (int i = 0; i < tamanho; i++) {
-            for (int j = 0; j < tamanho; j++) {
-                button = new NavigationButton(BACKGROUND_IMG);
-                button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    private void addButtons(JPanel panel) {
+        for (int i = 0; i < SIDE; i++) {
+            for (int j = 0; j < SIDE; j++) {
+                button = new NavigationButton(BACKGROUND_IMG, i, j);
+                button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
+                button.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 button.setPreferredSize(BTN_PREF_SIZE);
                 panel.add(button);
             }
