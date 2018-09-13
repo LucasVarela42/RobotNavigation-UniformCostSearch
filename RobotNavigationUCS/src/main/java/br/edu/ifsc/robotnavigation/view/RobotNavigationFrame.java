@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.robotnavigation.view;
 
+import br.edu.ifsc.robotnavigation.controller.ConvertNumeric;
 import br.edu.ifsc.robotnavigation.controller.PanelGrid;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     public RobotNavigationFrame() {
         initComponents();
         buttonsGrid = new PanelGrid(this.jPanelGrid);
+        
         pack();
     }
 
@@ -48,6 +50,11 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         jPanelGrid.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonStart.setText("Start");
+        jButtonStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStartActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
         jPanelControl.setLayout(jPanelControlLayout);
@@ -89,6 +96,11 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
+        ConvertNumeric.convert(buttonsGrid);
+        ConvertNumeric.printNumeric();
+    }//GEN-LAST:event_jButtonStartActionPerformed
 
     /**
      * @param args the command line arguments

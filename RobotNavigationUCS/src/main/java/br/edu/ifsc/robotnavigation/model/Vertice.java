@@ -5,7 +5,6 @@
 package br.edu.ifsc.robotnavigation.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Classe para abstrair vértices de grafos direcionados IFSC - Lages Prof.
@@ -18,8 +17,9 @@ public class Vertice {
 
     //Rótulo do vértice: serve para identificação
     private final String rotulo;
-
-//Os quatro próximos atributos são utilizados pelos algoritmos de grafos.
+    private String tipo;
+    
+    //Os quatro próximos atributos são utilizados pelos algoritmos de grafos.
     //Quando o valor de visitado for 0 (zero) significa que o vértice ainda
     //não foi visitado pelo algoritmo. Em cada nova visita o método deve invocar
     //o método visitar() para incrementar este valor. O método zerarVisitas()
@@ -41,6 +41,11 @@ public class Vertice {
     //da qual cada vértice do grafo faz parte, durante a execução, para detectar
     //ciclos.
     private int nArvore;
+
+    public Vertice(String rotulo, String tipo) {
+        this.rotulo = rotulo;
+        this.tipo = tipo;
+    }
 
     public Vertice(String rotulo) {
         this.rotulo = rotulo;
@@ -148,6 +153,14 @@ public class Vertice {
         } else {
             this.caminhoLista = new ArrayList(caminhoLista);
         }
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getRotulo() {
+        return rotulo;
     }
 
 }
