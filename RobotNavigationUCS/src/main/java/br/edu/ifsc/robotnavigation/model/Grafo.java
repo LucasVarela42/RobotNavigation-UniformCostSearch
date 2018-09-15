@@ -22,7 +22,7 @@ public class Grafo {
 //    public Grafo(File arquivo) throws IOException {
 //        this.lerArquivo(arquivo);
 //    }
-    public void adicionarVertice(String rotulo, String tipo) {
+    public void adicionarVertice(String rotulo, int tipo) {
         Vertice novo = new Vertice(rotulo, tipo);
         vertices.add(novo);
     }
@@ -82,5 +82,15 @@ public class Grafo {
             resultado.addAll(vertice.obterArcos());
         }
         return resultado;
+    }
+
+    public void copiarVertices(Vertice v[][]) {
+        for (int i = 0; i < v.length; i++) {
+            for (int j = 0; j < v.length; j++) {
+                vertices.add(v[i][j]);
+
+            }
+
+        }
     }
 }

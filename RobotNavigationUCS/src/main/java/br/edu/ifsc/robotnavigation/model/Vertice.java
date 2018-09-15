@@ -17,8 +17,8 @@ public class Vertice {
 
     //Rótulo do vértice: serve para identificação
     private final String rotulo;
-    private String tipo;
-    
+    private int tipo;
+
     //Os quatro próximos atributos são utilizados pelos algoritmos de grafos.
     //Quando o valor de visitado for 0 (zero) significa que o vértice ainda
     //não foi visitado pelo algoritmo. Em cada nova visita o método deve invocar
@@ -42,7 +42,7 @@ public class Vertice {
     //ciclos.
     private int nArvore;
 
-    public Vertice(String rotulo, String tipo) {
+    public Vertice(String rotulo, int tipo) {
         this.rotulo = rotulo;
         this.tipo = tipo;
     }
@@ -71,7 +71,7 @@ public class Vertice {
 
     @Override
     public String toString() {
-        return this.rotulo;
+        return this.rotulo + "(" + this.tipo + ")";
     }
 
     @Override
@@ -155,7 +155,7 @@ public class Vertice {
         }
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 

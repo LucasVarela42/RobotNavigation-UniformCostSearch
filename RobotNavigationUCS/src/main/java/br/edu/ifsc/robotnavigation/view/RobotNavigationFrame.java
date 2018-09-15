@@ -5,7 +5,7 @@
  */
 package br.edu.ifsc.robotnavigation.view;
 
-import br.edu.ifsc.robotnavigation.controller.ConvertNumeric;
+import br.edu.ifsc.robotnavigation.controller.ConvertGrafo;
 import br.edu.ifsc.robotnavigation.controller.PanelGrid;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -98,8 +98,9 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-        ConvertNumeric.convert(buttonsGrid);
-        ConvertNumeric.printNumeric();
+        ConvertGrafo.convert(buttonsGrid);
+        ConvertGrafo.gerarGrafo();
+        
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     /**
