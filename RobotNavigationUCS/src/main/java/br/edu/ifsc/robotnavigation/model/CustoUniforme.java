@@ -14,17 +14,26 @@ import java.util.Queue;
  * @author Lucas
  */
 public class CustoUniforme {
-    
+
     //TODO Adaptar a busca de Dijkstra para busca uniforme
-    public static ArrayList<Vertice> dijkstra(Grafo g, Vertice s) {
+    public static ArrayList<Vertice> dijkstra(Grafo g, Vertice s, Vertice f) {
         Queue<Vertice> Q = new LinkedList();
         ArrayList<Vertice> S = new ArrayList();
-
+        ArrayList<Vertice> borda = new ArrayList();
+        
+        
+        //Zerando a distância e caminho de todos os vértices do grafo
         for (Vertice u : g.obterVertices()) {
             u.setCaminho("");
             u.zerarDistancia();
-            Q.add(u);
+            //Q.add(u);
         }
+        
+       
+        
+        
+        
+        //Inicializando o vertice inicial com caminho vazio e distância 0
         s.setCaminho("");
         s.definirDistancia(0);
 
@@ -49,5 +58,5 @@ public class CustoUniforme {
         }
         return S;
     }
-    
+
 }

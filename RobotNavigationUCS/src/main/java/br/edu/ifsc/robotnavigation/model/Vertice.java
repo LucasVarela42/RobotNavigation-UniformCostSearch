@@ -14,6 +14,7 @@ public class Vertice {
 
     //Lista de arcos que saem do vértice
     private final ArrayList<Arco> arcos = new ArrayList();
+    private final ArrayList<Vertice> adjacentes = new ArrayList();
 
     //Rótulo do vértice: serve para identificação
     private final String rotulo;
@@ -163,4 +164,10 @@ public class Vertice {
         return rotulo;
     }
 
+    public ArrayList<Vertice> obterAdjacentes() {
+        for (int i = 0; i < obterArcos().size(); i++) {
+            this.adjacentes.add(arcos.get(i).getDestino());
+        }
+        return this.adjacentes;
+    }
 }
