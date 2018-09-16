@@ -86,22 +86,6 @@ public class RobotNavigationController implements ActionListener, MouseListener 
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
     private void eventoStart() {
         Grafo grafo;
         Vertice verticeInicio;
@@ -120,6 +104,22 @@ public class RobotNavigationController implements ActionListener, MouseListener 
         for (Vertice v : vertices) {
             System.out.println(v.toString() + "," + v.obterDistancia());
         }
+    }
 
+    //Mouse events
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }
