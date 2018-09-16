@@ -5,7 +5,10 @@
  */
 package br.edu.ifsc.robotnavigation.controller;
 
-import br.edu.ifsc.robotnavigation.model.CustoUniforme;
+import br.edu.ifsc.robotnavigation.util.PanelGrid;
+import br.edu.ifsc.robotnavigation.util.NavigationButton;
+import br.edu.ifsc.robotnavigation.util.ConvertGrafo;
+import br.edu.ifsc.robotnavigation.algorithm.CustoUniforme;
 import br.edu.ifsc.robotnavigation.model.Grafo;
 import br.edu.ifsc.robotnavigation.model.Vertice;
 import br.edu.ifsc.robotnavigation.view.RobotNavigationFrame;
@@ -44,30 +47,36 @@ public class RobotNavigationController implements ActionListener, MouseListener 
     @Override
     public void mouseClicked(MouseEvent e) {
         NavigationButton button;
-        if (e.getButton() == MouseEvent.BUTTON1) { //Left
-            System.out.println("Left click");
-            button = (NavigationButton) e.getSource();
-            if (button.getTypeImage().equals("/initial-position.png")) {
-                button.setImagemBotao("/background.png");
-            } else {
-                button.setImagemBotao("/initial-position.png");
-            }
-        } else if (e.getButton() == MouseEvent.BUTTON2) { //Middle
-            System.out.println("Middle click");
-            button = (NavigationButton) e.getSource();
-            if (button.getTypeImage().equals("/block.png")) {
-                button.setImagemBotao("/background.png");
-            } else {
-                button.setImagemBotao("/block.png");
-            }
-        } else if (e.getButton() == MouseEvent.BUTTON3) { //Right
-            System.out.println("Right click");
-            button = (NavigationButton) e.getSource();
-            if (button.getTypeImage().equals("/final-position.png")) {
-                button.setImagemBotao("/background.png");
-            } else {
-                button.setImagemBotao("/final-position.png");
-            }
+        switch (e.getButton()) {
+            case MouseEvent.BUTTON1:
+                //Left
+                button = (NavigationButton) e.getSource();
+                if (button.getTypeImage().equals("/initial-position.png")) {
+                    button.setImagemBotao("/background.png");
+                } else {
+                    button.setImagemBotao("/initial-position.png");
+                }
+                break;
+            case MouseEvent.BUTTON2:
+                //Middle
+                button = (NavigationButton) e.getSource();
+                if (button.getTypeImage().equals("/block.png")) {
+                    button.setImagemBotao("/background.png");
+                } else {
+                    button.setImagemBotao("/block.png");
+                }
+                break;
+            case MouseEvent.BUTTON3:
+                //Right
+                button = (NavigationButton) e.getSource();
+                if (button.getTypeImage().equals("/final-position.png")) {
+                    button.setImagemBotao("/background.png");
+                } else {
+                    button.setImagemBotao("/final-position.png");
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -86,6 +95,38 @@ public class RobotNavigationController implements ActionListener, MouseListener 
         }
     }
 
+    private void eventoStart() {
+        Grafo grafo;
+        Vertice resultado;
+        ConvertGrafo.convert(panelGrid);
+        grafo = ConvertGrafo.gerarGrafo();
+
+        resultado = CustoUniforme.custoUniforme(
+                grafo,
+                ConvertGrafo.getVerticeInicio(),
+                ConvertGrafo.getVerticeFim());
+
+        this.view.getjLabelCostValue().setText(String.format("%.2f",
+                ConvertGrafo.getVerticeFim().obterDistancia()));
+
+        if (resultado != null) {
+            mostrarCaminho(resultado);
+        }
+    }
+
+    private void mostrarCaminho(Vertice resultado) {
+
+        for (String rotulo : resultado.getCaminhoLista()) {
+            for (NavigationButton navigationButton : buttonsGrid) {
+                if (rotulo.equals(String.valueOf(navigationButton.hashCode()))) {
+                    navigationButton.setImagemBotao("/initial-position.png");
+                }
+            }
+
+        }
+    }
+
+    //Mouse events
     @Override
     public void mousePressed(MouseEvent e) {
     }
@@ -100,26 +141,5 @@ public class RobotNavigationController implements ActionListener, MouseListener 
 
     @Override
     public void mouseExited(MouseEvent e) {
-    }
-
-    private void eventoStart() {
-        Grafo grafo;
-        Vertice verticeInicio;
-        Vertice verticeFim;
-        ArrayList<Vertice> vertices;
-        ConvertGrafo.convert(panelGrid);
-        grafo = ConvertGrafo.gerarGrafo();
-
-        verticeInicio = ConvertGrafo.getVerticeInicio();
-        verticeFim = ConvertGrafo.getVerticeFim();
-
-        vertices = CustoUniforme.dijkstra(grafo, verticeInicio);
-
-        this.view.getjLabelCostValue().setText(String.format("%.2f", verticeFim.obterDistancia()));
-
-        for (Vertice v : vertices) {
-            System.out.println(v.toString() + "," + v.obterDistancia());
-        }
-
     }
 }

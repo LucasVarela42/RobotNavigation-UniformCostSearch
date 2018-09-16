@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifsc.robotnavigation.controller;
+package br.edu.ifsc.robotnavigation.util;
 
 import br.edu.ifsc.robotnavigation.model.Arco;
 import br.edu.ifsc.robotnavigation.model.Grafo;
@@ -79,12 +79,15 @@ public class ConvertGrafo {
 
     private static void gerarVertices() {
         vertices = new Vertice[repNumeric.length][repNumeric.length];
+        Vertice v = null;
         for (int i = 0; i < repNumeric.length; i++) {
             for (int j = 0; j < repNumeric.length; j++) {
                 String rotulo = String.valueOf(buttons[i][j].hashCode());
                 int tipo = repNumeric[i][j];
-                Vertice v = new Vertice(rotulo, tipo);
-                vertices[i][j] = v;
+                if (tipo != 2) {
+                    v = new Vertice(rotulo, tipo);
+                    vertices[i][j] = v;
+                }
                 if (tipo == 1) {
                     verticeInicio = v;
                 }
@@ -158,49 +161,49 @@ public class ConvertGrafo {
     }
 
     private static void verificarDireita(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1);
         }
     }
 
     private static void verificarEsquerda(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1);
         }
     }
 
     private static void verificarCima(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1);
         }
     }
 
     private static void verificarBaixo(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1);
         }
     }
 
     private static void verificarDiagonalSupDireita(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1.4);
         }
     }
 
     private static void verificarDiagonalSupEsquerda(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1.4);
         }
     }
 
     private static void verificarDiagonalInfDireita(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1.4);
         }
     }
 
     private static void verificarDiagonalInfEsquerda(Vertice v1, Vertice v2) {
-        if ((v1.getTipo() != 2) && (v2.getTipo() != 2)) {
+        if ((v1 != null) && (v2 != null)) {
             v1.adicionarArco(v2, 1.4);
         }
     }

@@ -33,7 +33,6 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jPanelGrid = new javax.swing.JPanel();
         jPanelControl = new javax.swing.JPanel();
         jButtonStart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -41,14 +40,12 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         jButtonGenerate = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabelCostValue = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanelGrid = new javax.swing.JPanel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanelGrid.setBorder(javax.swing.BorderFactory.createTitledBorder("Navigation"));
-        jPanelGrid.setAutoscrolls(true);
-        jPanelGrid.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonStart.setText("Start");
         jButtonStart.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +56,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Grid size:");
 
-        jSpinnerSize.setModel(new javax.swing.SpinnerNumberModel(5, 3, null, 1));
+        jSpinnerSize.setModel(new javax.swing.SpinnerNumberModel(5, 5, null, 1));
 
         jButtonGenerate.setText("Generate");
         jButtonGenerate.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +88,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
         jPanelControlLayout.setVerticalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,34 +106,23 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(jPanelControl, java.awt.BorderLayout.PAGE_END);
+
+        jScrollPane1.setBorder(null);
+
+        jPanelGrid.setBorder(javax.swing.BorderFactory.createTitledBorder("Navigation"));
+        jPanelGrid.setAutoscrolls(true);
+        jPanelGrid.setLayout(new java.awt.GridLayout(1, 0));
+        jScrollPane1.setViewportView(jPanelGrid);
+
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateActionPerformed
@@ -225,7 +211,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     public void setjLabelCostValue(JLabel jLabelCostValue) {
         this.jLabelCostValue = jLabelCostValue;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -236,6 +222,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCostValue;
     private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelGrid;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerSize;
     // End of variables declaration//GEN-END:variables
 }
