@@ -135,8 +135,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateActionPerformed
@@ -225,7 +224,7 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     public void setjLabelCostValue(JLabel jLabelCostValue) {
         this.jLabelCostValue = jLabelCostValue;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

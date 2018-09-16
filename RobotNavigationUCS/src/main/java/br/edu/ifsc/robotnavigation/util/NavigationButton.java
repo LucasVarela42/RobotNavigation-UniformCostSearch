@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifsc.robotnavigation.controller;
+package br.edu.ifsc.robotnavigation.util;
 
 import javax.swing.JButton;
 
@@ -13,15 +13,11 @@ import javax.swing.JButton;
  */
 public class NavigationButton extends JButton {
 
-    private int x;
-    private int y;
     private String pathImage;
 
     public NavigationButton(String icone, int x, int y) {
         this.pathImage = icone;
         this.setIcon(new javax.swing.ImageIcon(getClass().getResource(icone)));
-        this.x = x;
-        this.y = y;
     }
 
     public void setImagemBotao(String icone) {

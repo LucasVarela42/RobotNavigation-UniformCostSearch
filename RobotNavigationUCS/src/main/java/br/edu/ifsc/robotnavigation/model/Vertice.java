@@ -7,8 +7,8 @@ package br.edu.ifsc.robotnavigation.model;
 import java.util.ArrayList;
 
 /**
- * Classe para abstrair vértices de grafos direcionados IFSC - Lages Prof.
- * Vilson Heck Junior
+ * Classe para abstrair vértices de grafos direcionados IFSC - Lages 
+ * Adaptação do codigo de grafos, criado por: Prof. Vilson Heck Junior
  */
 public class Vertice {
 
@@ -17,30 +17,19 @@ public class Vertice {
 
     //Rótulo do vértice: serve para identificação
     private String rotulo;
+    //tipo do vértice: serve para identificar o tipo do vertice atual
     private int tipo;
 
-    //Os quatro próximos atributos são utilizados pelos algoritmos de grafos.
-    //Quando o valor de visitado for 0 (zero) significa que o vértice ainda
-    //não foi visitado pelo algoritmo. Em cada nova visita o método deve invocar
-    //o método visitar() para incrementar este valor. O método zerarVisitas()
-    //zera este valor novamente. O método obterVisitado() informa o valor atual.
-    private int visitado = 0;
+    //Algoritmos de caminhos podem precisar da informação de qual caminho foi
+    //utilizado para se obter a distância informada. O caminho é um Array de String. 
+    //Contendo os rótulos dos vértices utilizados para chegar até o vértice final
+    private ArrayList<String> caminhoLista;
 
     //Vários algoritmos irão medir a distância de um vértice até outro. Este
     //atributo servirá como um "medidor auxiliar de distância", armazenando
     //temporariamente distâncias nas iterações dos algoritmos. Os métodos
     //definirDistancia(), zerarDistancia() e obterDistancia() devem ser usados.
     private double distancia = Double.POSITIVE_INFINITY;
-
-    //Algoritmos de caminhos podem precisar da informação de qual caminho foi
-    //utilizado para se obter a distância informada. O caminho é uma String
-    //Contendo os rótulos dos vértices utilizados para chegar até o vértice
-    private String caminho = "";
-
-    //Algoritmos de árvores geradoras mínimas podem precisar diferenciar a árvore
-    //da qual cada vértice do grafo faz parte, durante a execução, para detectar
-    //ciclos.
-    private int nArvore;
 
     public Vertice(String rotulo, int tipo) {
         this.rotulo = rotulo;
@@ -55,52 +44,8 @@ public class Vertice {
         this.arcos.add(new Arco(this, destino, peso));
     }
 
-    public boolean removerConexao(Vertice destino) {
-        for (Arco arcoAtual : arcos) {
-            if (arcoAtual.getDestino() == destino) {
-                this.arcos.remove(arcoAtual);
-                return true;
-            }
-        }
-        return false;
-    }
-
     public ArrayList<Arco> obterArcos() {
         return this.arcos;
-    }
-
-    @Override
-    public String toString() {
-        return "(" + this.tipo + ")" + this.rotulo;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return o.toString().equals(this.rotulo);
-    }
-
-    public String obterLinhaArquivo() {
-        String linha = this.rotulo;
-        for (Arco arcoAtual : arcos) {
-            linha += "\t" + arcoAtual.toString();
-        }
-        return linha;
-    }
-
-    public int obterGrau() {
-        return this.arcos.size();
-    }
-
-    public void visitar() {
-        this.visitado++;
-    }
-
-    public int obterVisitado() {
-        return this.visitado;
-    }
-
-    public void zerarVisitas() {
-        this.visitado = 0;
     }
 
     public void zerarDistancia() {
@@ -115,46 +60,6 @@ public class Vertice {
         return this.distancia;
     }
 
-    public int getnArvore() {
-        return nArvore;
-    }
-
-    public void setnArvore(int nArvore) {
-        this.nArvore = nArvore;
-    }
-
-    public String getCaminho() {
-        return caminho + " - " + this.rotulo;
-    }
-
-    public void setCaminho(String caminho) {
-        this.caminho = caminho;
-    }
-
-    private ArrayList<Arco> caminhoLista;
-
-    /**
-     * Get the value of caminhoLista
-     *
-     * @return the value of caminhoLista
-     */
-    public ArrayList<Arco> getCaminhoLista() {
-        return new ArrayList(this.caminhoLista);
-    }
-
-    /**
-     * Set the value of caminhoLista
-     *
-     * @param caminhoLista new value of caminhoLista
-     */
-    public void setCaminhoLista(ArrayList<Arco> caminhoLista) {
-        if (caminhoLista == null) {
-            this.caminhoLista = new ArrayList();
-        } else {
-            this.caminhoLista = new ArrayList(caminhoLista);
-        }
-    }
-
     public int getTipo() {
         return tipo;
     }
@@ -163,4 +68,25 @@ public class Vertice {
         return rotulo;
     }
 
+    public ArrayList<String> getCaminhoLista() {
+        return new ArrayList(this.caminhoLista);
+    }
+
+    public void setCaminhoLista(ArrayList<String> caminhoLista) {
+        if (caminhoLista == null) {
+            this.caminhoLista = new ArrayList();
+        } else {
+            this.caminhoLista = new ArrayList(caminhoLista);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "(" + this.tipo + ")" + this.rotulo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o.toString().equals(this.rotulo);
+    }
 }
