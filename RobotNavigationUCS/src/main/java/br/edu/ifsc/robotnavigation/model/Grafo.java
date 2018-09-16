@@ -31,8 +31,8 @@ public class Grafo {
         return this.vertices;
     }
 
-    public Vertice pesquisaVertice(String rotulo) {
-        int indice = vertices.indexOf(new Vertice(rotulo));
+    public Vertice pesquisaVertice(String rotulo, int tipo) {
+        int indice = vertices.indexOf(new Vertice(rotulo, tipo));
         return (indice >= 0) ? vertices.get(indice) : null;
     }
 

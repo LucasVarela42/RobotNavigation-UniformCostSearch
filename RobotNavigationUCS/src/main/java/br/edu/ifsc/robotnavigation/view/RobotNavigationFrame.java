@@ -5,25 +5,22 @@
  */
 package br.edu.ifsc.robotnavigation.view;
 
-import br.edu.ifsc.robotnavigation.controller.ConvertGrafo;
-import br.edu.ifsc.robotnavigation.controller.PanelGrid;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 
 /**
  *
  * @author Lucas
  */
 public class RobotNavigationFrame extends javax.swing.JFrame {
-    PanelGrid buttonsGrid;
+
     /**
      * Creates new form RobotNavigationFrame
      */
     public RobotNavigationFrame() {
         initComponents();
-        buttonsGrid = new PanelGrid(this.jPanelGrid);
-        
-        pack();
     }
 
     /**
@@ -39,11 +36,15 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         jPanelGrid = new javax.swing.JPanel();
         jPanelControl = new javax.swing.JPanel();
         jButtonStart = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSpinnerSize = new javax.swing.JSpinner();
+        jButtonGenerate = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelCostValue = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jPanelGrid.setBorder(javax.swing.BorderFactory.createTitledBorder("Navigation"));
         jPanelGrid.setAutoscrolls(true);
@@ -56,20 +57,55 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Grid size:");
+
+        jSpinnerSize.setModel(new javax.swing.SpinnerNumberModel(5, 3, null, 1));
+
+        jButtonGenerate.setText("Generate");
+        jButtonGenerate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerateActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Cost:");
+
+        jLabelCostValue.setText("-");
+
         javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
         jPanelControl.setLayout(jPanelControlLayout);
         jPanelControlLayout.setHorizontalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlLayout.createSequentialGroup()
-                .addContainerGap(280, Short.MAX_VALUE)
-                .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanelControlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCostValue)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanelControlLayout.setVerticalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelControlLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonStart)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGenerate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonStart)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelCostValue))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -95,13 +131,17 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-        ConvertGrafo.convert(buttonsGrid);
-        ConvertGrafo.gerarGrafo();
-        
+
+
     }//GEN-LAST:event_jButtonStartActionPerformed
+
+    private void jButtonGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonGenerateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,14 +178,6 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         });
     }
 
-    public PanelGrid getButtonsGrid() {
-        return buttonsGrid;
-    }
-
-    public void setButtonsGrid(PanelGrid buttonsGrid) {
-        this.buttonsGrid = buttonsGrid;
-    }
-
     public JButton getjButtonStart() {
         return jButtonStart;
     }
@@ -169,13 +201,41 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     public void setjPanelGrid(JPanel jPanelGrid) {
         this.jPanelGrid = jPanelGrid;
     }
-    
+
+    public JSpinner getjSpinnerSize() {
+        return jSpinnerSize;
+    }
+
+    public void setjSpinnerSize(JSpinner jSpinnerSize) {
+        this.jSpinnerSize = jSpinnerSize;
+    }
+
+    public JButton getjButtonGenerate() {
+        return jButtonGenerate;
+    }
+
+    public void setjButtonGenerate(JButton jButtonGenerate) {
+        this.jButtonGenerate = jButtonGenerate;
+    }
+
+    public JLabel getjLabelCostValue() {
+        return jLabelCostValue;
+    }
+
+    public void setjLabelCostValue(JLabel jLabelCostValue) {
+        this.jLabelCostValue = jLabelCostValue;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonGenerate;
     private javax.swing.JButton jButtonStart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelCostValue;
     private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelGrid;
+    private javax.swing.JSpinner jSpinnerSize;
     // End of variables declaration//GEN-END:variables
 }

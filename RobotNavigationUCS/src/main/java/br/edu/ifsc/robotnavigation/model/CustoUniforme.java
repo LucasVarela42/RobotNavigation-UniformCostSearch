@@ -38,7 +38,7 @@ public class CustoUniforme {
         s.definirDistancia(0);
 
         while (!Q.isEmpty()) {
-            System.out.println(Q);
+            //System.out.println(Q);
             //Pegar da fila
             Vertice u = Q.remove();
             
@@ -46,7 +46,7 @@ public class CustoUniforme {
             for (Arco arco : u.obterArcos()) {
 
                 Vertice v = arco.getDestino();
-//                System.out.println("u: " + u + ", v: " + v);
+                System.out.println("u: " + u + ", v: " + v);
                 if (v.obterDistancia() > u.obterDistancia() + arco.getPeso()) {
                     //---
                     v.definirDistancia(u.obterDistancia() + arco.getPeso());
