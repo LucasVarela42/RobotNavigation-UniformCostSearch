@@ -16,7 +16,7 @@ public class Vertice {
     private final ArrayList<Arco> arcos = new ArrayList();
 
     //Rótulo do vértice: serve para identificação
-    private final String rotulo;
+    private String rotulo;
     private int tipo;
 
     //Os quatro próximos atributos são utilizados pelos algoritmos de grafos.
@@ -47,8 +47,8 @@ public class Vertice {
         this.tipo = tipo;
     }
 
-    public Vertice(String rotulo) {
-        this.rotulo = rotulo;
+    public Vertice(int tipo) {
+        this.tipo = tipo;
     }
 
     public void adicionarArco(Vertice destino, double peso) {
@@ -71,7 +71,7 @@ public class Vertice {
 
     @Override
     public String toString() {
-        return this.rotulo + "(" + this.tipo + ")";
+        return "(" + this.tipo + ")" + this.rotulo;
     }
 
     @Override

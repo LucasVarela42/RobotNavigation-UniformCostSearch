@@ -19,17 +19,18 @@ import javax.swing.border.BevelBorder;
  */
 public class PanelGrid extends JPanel {
 
-    private static final int SIDE = 10;
+    private static int SIDE = 4;
     private static final String BACKGROUND_IMG = "/background.png";
     private static final Dimension BTN_PREF_SIZE = new Dimension(32, 32);
     private NavigationButton button;
     private NavigationButton buttons[][];
 
-    public PanelGrid(JPanel panel) {
+    public PanelGrid(JPanel panel, int side) {
+        SIDE = side;
         panel.setLayout(new GridLayout(SIDE, SIDE, 0, 0));
         buttons = new NavigationButton[SIDE][SIDE];
         addButtons(panel);
-        
+
     }
 
     private void addButtons(JPanel panel) {

@@ -22,5 +22,7 @@ public class RobotNavigationApp {
 
         view.setVisible(true);
 
+        view.pack();
+
     }
 }

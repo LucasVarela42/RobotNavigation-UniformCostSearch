@@ -18,6 +18,8 @@ public class ConvertGrafo {
     private static NavigationButton buttons[][];
     private static int repNumeric[][];
     private static Vertice vertices[][];
+    private static Vertice verticeInicio;
+    private static Vertice verticeFim;
     public static Grafo grafo;
 
     public static void convert(PanelGrid panel) {
@@ -83,9 +85,22 @@ public class ConvertGrafo {
                 int tipo = repNumeric[i][j];
                 Vertice v = new Vertice(rotulo, tipo);
                 vertices[i][j] = v;
-
+                if (tipo == 1) {
+                    verticeInicio = v;
+                }
+                if (tipo == 3) {
+                    verticeFim = v;
+                }
             }
         }
+    }
+
+    public static Vertice getVerticeInicio() {
+        return verticeInicio;
+    }
+
+    public static Vertice getVerticeFim() {
+        return verticeFim;
     }
 
     private static void gerarArcos() {
@@ -133,12 +148,13 @@ public class ConvertGrafo {
         System.out.println("Arcos gerados com sucesso!");
     }
 
-    public static void gerarGrafo() {
+    public static Grafo gerarGrafo() {
         gerarVertices();
         gerarArcos();
         grafo = new Grafo();
         grafo.copiarVertices(vertices);
         System.out.println("O grafo foi gerado com sucesso!!");
+        return grafo;
     }
 
     private static void verificarDireita(Vertice v1, Vertice v2) {
