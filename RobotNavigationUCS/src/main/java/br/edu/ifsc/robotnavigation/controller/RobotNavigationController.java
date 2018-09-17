@@ -95,6 +95,8 @@ public class RobotNavigationController implements ActionListener, MouseListener 
             component.addMouseListener(this);
             buttonsGrid.add((NavigationButton) component);
         }
+        
+        this.view.getjButtonStart().setEnabled(true);
     }
 
     private void eventoStart() {
@@ -108,15 +110,15 @@ public class RobotNavigationController implements ActionListener, MouseListener 
                 grafo,
                 ConvertGrafo.getVerticeInicio(),
                 ConvertGrafo.getVerticeFim());
-        
+
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
 
         this.view.getjLabelCostValue().setText(String.format("%.2f",
                 ConvertGrafo.getVerticeFim().obterDistancia())
-                + " - " + timeElapsed + "ms"
-                + " - Explorados: " + CustoUniforme.EXPLORADOS
-                + " - Gerados: " + CustoUniforme.GERADOS);
+                + " - " + timeElapsed + "ms");
+        this.view.getjLabelExplored().setText(String.valueOf(CustoUniforme.EXPLORADOS));
+        this.view.getjLabelGenerated().setText(String.valueOf(CustoUniforme.GERADOS));
 
         if (resultado != null) {
             mostrarCaminho(resultado);
@@ -124,14 +126,12 @@ public class RobotNavigationController implements ActionListener, MouseListener 
     }
 
     private void mostrarCaminho(Vertice resultado) {
-
         for (String rotulo : resultado.getCaminhoLista()) {
             for (NavigationButton navigationButton : buttonsGrid) {
                 if (rotulo.equals(String.valueOf(navigationButton.hashCode()))) {
-                    navigationButton.setImagemBotao("/initial-position.png");
+                    navigationButton.setImagemBotao("/path.png");
                 }
             }
-
         }
     }
 

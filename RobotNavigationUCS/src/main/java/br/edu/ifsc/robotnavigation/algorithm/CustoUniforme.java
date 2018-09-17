@@ -69,9 +69,10 @@ public class CustoUniforme {
                 found = true;
                 result = current;
             }
-            EXPLORADOS = explorados.size();
-            GERADOS = explorados.size() + queue.size();
         }
+        result.getCaminhoLista().add(result.getRotulo());
+        EXPLORADOS = explorados.size();
+        GERADOS = explorados.size() + queue.size();
         return result;
     }
 
