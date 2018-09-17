@@ -18,18 +18,24 @@ import java.util.Queue;
  */
 public class CustoUniforme {
 
+    public static int EXPLORADOS = 0;
+    public static int GERADOS = 0;
+
     public static Vertice custoUniforme(Grafo g, Vertice start, Vertice goal) {
         for (Vertice u : g.obterVertices()) {
             if (u != null) {
+                u.zerarVisitas();
                 u.zerarDistancia();
                 u.setCaminhoLista(null);
             }
         }
+        start.visitar();
         start.definirDistancia(0);
 
         Vertice result = null;
         boolean found = false;
 
+        ArrayList<Vertice> explorados = new ArrayList();
         Queue<Vertice> queue = new LinkedList();
         queue.add(start);
 
@@ -42,6 +48,7 @@ public class CustoUniforme {
             for (Arco arco : current.obterArcos()) {
                 //System.out.println("current: " + u + ", child: " + arco);
                 Vertice child = arco.getDestino();
+
                 if (child.obterDistancia() > current.obterDistancia() + arco.getPeso()) {
                     //---
                     child.definirDistancia(current.obterDistancia() + arco.getPeso());
@@ -51,13 +58,19 @@ public class CustoUniforme {
                     child.setCaminhoLista(caminhos);
 
                     queue.add(child);
+                    child.visitar();
                     //---
                 }
+
             }
+            explorados.add(current);
+
             if (current.getRotulo().equals(goal.getRotulo())) {
                 found = true;
                 result = current;
             }
+            EXPLORADOS = explorados.size();
+            GERADOS = explorados.size() + queue.size();
         }
         return result;
     }

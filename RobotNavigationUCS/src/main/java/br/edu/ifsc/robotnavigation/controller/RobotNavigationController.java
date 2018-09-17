@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 
 /**
@@ -101,13 +103,20 @@ public class RobotNavigationController implements ActionListener, MouseListener 
         ConvertGrafo.convert(panelGrid);
         grafo = ConvertGrafo.gerarGrafo();
 
+        Instant start = Instant.now();
         resultado = CustoUniforme.custoUniforme(
                 grafo,
                 ConvertGrafo.getVerticeInicio(),
                 ConvertGrafo.getVerticeFim());
+        
+        Instant finish = Instant.now();
+        long timeElapsed = Duration.between(start, finish).toMillis();
 
         this.view.getjLabelCostValue().setText(String.format("%.2f",
-                ConvertGrafo.getVerticeFim().obterDistancia()));
+                ConvertGrafo.getVerticeFim().obterDistancia())
+                + " - " + timeElapsed + "ms"
+                + " - Explorados: " + CustoUniforme.EXPLORADOS
+                + " - Gerados: " + CustoUniforme.GERADOS);
 
         if (resultado != null) {
             mostrarCaminho(resultado);
