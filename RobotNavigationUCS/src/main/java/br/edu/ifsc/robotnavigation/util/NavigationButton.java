@@ -15,7 +15,7 @@ public class NavigationButton extends JButton {
 
     private String pathImage;
 
-    public NavigationButton(String icone, int x, int y) {
+    public NavigationButton(String icone) {
         this.pathImage = icone;
         this.setIcon(new javax.swing.ImageIcon(getClass().getResource(icone)));
     }
