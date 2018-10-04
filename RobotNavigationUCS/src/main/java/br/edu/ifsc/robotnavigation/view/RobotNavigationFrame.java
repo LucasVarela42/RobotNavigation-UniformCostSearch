@@ -6,6 +6,7 @@
 package br.edu.ifsc.robotnavigation.view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -44,6 +45,8 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabelExplored = new javax.swing.JLabel();
         jLabelGenerated = new javax.swing.JLabel();
+        jComboBoxAlgorithm = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelGrid = new javax.swing.JPanel();
 
@@ -82,6 +85,10 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
 
         jLabelGenerated.setText("-");
 
+        jComboBoxAlgorithm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grafo", "Arvore" }));
+
+        jLabel5.setText("Algorithm:");
+
         javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
         jPanelControl.setLayout(jPanelControlLayout);
         jPanelControlLayout.setHorizontalGroup(
@@ -90,31 +97,32 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelExplored))
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelGenerated))
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCostValue))
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jButtonGenerate))
-                    .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelControlLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelCostValue))
-                            .addGroup(jPanelControlLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelExplored))
-                            .addGroup(jPanelControlLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelGenerated)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxAlgorithm, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGenerate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonStart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanelControlLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonGenerate, jButtonStart});
+        jPanelControlLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonGenerate, jButtonStart, jComboBoxAlgorithm});
 
         jPanelControlLayout.setVerticalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,8 +131,9 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGenerate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jComboBoxAlgorithm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(3, 3, 3)
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelControlLayout.createSequentialGroup()
                         .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -137,11 +146,15 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabelGenerated))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(jLabelGenerated)))
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jButtonGenerate)
+                        .addGap(3, 3, 3)
+                        .addComponent(jButtonStart)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanelControlLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonGenerate, jButtonStart, jComboBoxAlgorithm});
 
         getContentPane().add(jPanelControl, java.awt.BorderLayout.PAGE_END);
 
@@ -241,6 +254,14 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         this.jButtonGenerate = jButtonGenerate;
     }
 
+    public JComboBox<String> getjComboBoxAlgorithm() {
+        return jComboBoxAlgorithm;
+    }
+
+    public void setjComboBoxAlgorithm(JComboBox<String> jComboBoxAlgorithm) {
+        this.jComboBoxAlgorithm = jComboBoxAlgorithm;
+    }
+
     public JLabel getjLabelCostValue() {
         return jLabelCostValue;
     }
@@ -272,10 +293,12 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonGenerate;
     private javax.swing.JButton jButtonStart;
+    private javax.swing.JComboBox<String> jComboBoxAlgorithm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCostValue;
     private javax.swing.JLabel jLabelExplored;
     private javax.swing.JLabel jLabelGenerated;

@@ -8,7 +8,7 @@ package br.edu.ifsc.robotnavigation.controller;
 import br.edu.ifsc.robotnavigation.util.PanelGrid;
 import br.edu.ifsc.robotnavigation.util.NavigationButton;
 import br.edu.ifsc.robotnavigation.util.ConvertGrafo;
-import br.edu.ifsc.robotnavigation.algorithm.CustoUniforme;
+import br.edu.ifsc.robotnavigation.algorithm.Algoritmos;
 import br.edu.ifsc.robotnavigation.model.Grafo;
 import br.edu.ifsc.robotnavigation.model.Vertice;
 import br.edu.ifsc.robotnavigation.view.RobotNavigationFrame;
@@ -35,6 +35,7 @@ public class RobotNavigationController implements ActionListener, MouseListener 
         this.view = view;
         this.view.getjButtonStart().addActionListener(this);
         this.view.getjButtonGenerate().addActionListener(this);
+        this.view.getjComboBoxAlgorithm().addActionListener(this);
     }
 
     @Override
@@ -95,34 +96,49 @@ public class RobotNavigationController implements ActionListener, MouseListener 
             component.addMouseListener(this);
             buttonsGrid.add((NavigationButton) component);
         }
-        
+
         this.view.getjButtonStart().setEnabled(true);
     }
 
     private void eventoStart() {
         Grafo grafo;
+        Instant start;
+        Instant finish;
         Vertice resultado;
         ConvertGrafo.convert(panelGrid);
         grafo = ConvertGrafo.gerarGrafo();
 
-        Instant start = Instant.now();
-        resultado = CustoUniforme.custoUniforme(
-                grafo,
-                ConvertGrafo.getVerticeInicio(),
-                ConvertGrafo.getVerticeFim());
+        if (getSelectedAlgorithm() == 0) {
+            start = Instant.now();
+            resultado = Algoritmos.custoUniformeGrafo(
+                    grafo,
+                    ConvertGrafo.getVerticeInicio(),
+                    ConvertGrafo.getVerticeFim());
+            finish = Instant.now();
+        } else {
+            start = Instant.now();
+            resultado = Algoritmos.custoUniformeArvore(
+                    grafo,
+                    ConvertGrafo.getVerticeInicio(),
+                    ConvertGrafo.getVerticeFim());
+            finish = Instant.now();
+        }
 
-        Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
 
         this.view.getjLabelCostValue().setText(String.format("%.2f",
                 ConvertGrafo.getVerticeFim().obterDistancia())
                 + " - " + timeElapsed + "ms");
-        this.view.getjLabelExplored().setText(String.valueOf(CustoUniforme.EXPLORADOS));
-        this.view.getjLabelGenerated().setText(String.valueOf(CustoUniforme.GERADOS));
+        this.view.getjLabelExplored().setText(String.valueOf(Algoritmos.EXPLORADOS));
+        this.view.getjLabelGenerated().setText(String.valueOf(Algoritmos.GERADOS));
 
         if (resultado != null) {
             mostrarCaminho(resultado);
         }
+    }
+
+    private int getSelectedAlgorithm() {
+        return this.view.getjComboBoxAlgorithm().getSelectedIndex();
     }
 
     private void mostrarCaminho(Vertice resultado) {
