@@ -4,26 +4,48 @@
  */
 package br.edu.ifsc.robotnavigation.model;
 
+/**
+ *
+ * @author Lucas
+ */
 public class Arco implements Comparable<Arco> {
 
     private Vertice destino;
     private Vertice origem;
     private double peso;
 
+    /**
+     *
+     * @param origem
+     * @param destino
+     * @param peso
+     */
     public Arco(Vertice origem, Vertice destino, double peso) {
         this.origem = origem;
         this.destino = destino;
         this.peso = peso;
     }
 
+    /**
+     *
+     * @return origem
+     */
     public Vertice getOrigem() {
         return origem;
     }
 
+    /**
+     *
+     * @return destino
+     */
     public Vertice getDestino() {
         return destino;
     }
 
+    /**
+     *
+     * @return peso
+     */
     public double getPeso() {
         return peso;
     }

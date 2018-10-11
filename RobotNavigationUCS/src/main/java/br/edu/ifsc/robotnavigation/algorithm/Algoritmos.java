@@ -13,14 +13,35 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *
- * @author Lucas
+ * Classe com os algoritmos de Custo minimo
+ * Custo minimo com grafos
+ * Custo minimo com arvore
+ * @author Lucas, Matheus
  */
 public class Algoritmos {
 
+    /**
+     * variavel para guardar os vertices explorados
+     */
     public static int EXPLORADOS;
+
+    /**
+     * variavel para guardar os vertices gerados
+     */
     public static int GERADOS;
 
+    /**
+     * variavel para guardar os vertices vizitados
+     */
+    public static int VIZITADOS;
+
+    /**
+     *
+     * @param g - Grafo completo
+     * @param start - Vertice inicial
+     * @param goal - Vertice Final (Objetivo final)
+     * @return result com a lista de caminhos realizados
+     */
     public static Vertice custoUniformeGrafo(Grafo g, Vertice start, Vertice goal) {
         for (Vertice u : g.obterVertices()) {
             if (u != null) {
@@ -33,7 +54,7 @@ public class Algoritmos {
         start.definirDistancia(0);
         EXPLORADOS = 0;
         GERADOS = 0;
-
+        VIZITADOS = start.obterVisitado();
         Vertice result = null;
         boolean found = false;
 
@@ -62,6 +83,7 @@ public class Algoritmos {
                     if (child.obterVisitado() == 0) {
                         queue.add(child);
                         child.visitar();
+                        VIZITADOS += child.obterVisitado();
                     }
                     //---
                 }
@@ -79,9 +101,17 @@ public class Algoritmos {
         return result;
     }
 
+    /**
+     *
+     * @param g - Grafo completo (Adaptado para o algoritmo de arvore)
+     * @param start - Vertice inicial
+     * @param goal - Vertice Final (Objetivo final)
+     * @return result com a lista de caminhos realizados
+     */
     public static Vertice custoUniformeArvore(Grafo g, Vertice start, Vertice goal) {
         for (Vertice u : g.obterVertices()) {
             if (u != null) {
+                u.zerarVisitas();
                 u.zerarDistancia();
                 u.setCaminhoLista(null);
             }
@@ -89,7 +119,7 @@ public class Algoritmos {
         start.definirDistancia(0);
         EXPLORADOS = 0;
         GERADOS = 0;
-
+        VIZITADOS = start.obterVisitado();
         Vertice result = null;
         boolean found = false;
 
@@ -116,6 +146,8 @@ public class Algoritmos {
                     child.setCaminhoLista(caminhos);
 
                     queue.add(child);
+                    child.visitar();
+                    VIZITADOS += child.obterVisitado();
                     //---
                 }
             }

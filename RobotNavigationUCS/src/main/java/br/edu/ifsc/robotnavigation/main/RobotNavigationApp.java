@@ -9,11 +9,17 @@ import br.edu.ifsc.robotnavigation.controller.RobotNavigationController;
 import br.edu.ifsc.robotnavigation.view.RobotNavigationFrame;
 
 /**
+ * Classe Inicializadora
  *
- * @author Lucas
+ * @author Lucas, Matheus
  */
 public class RobotNavigationApp {
 
+    /**
+     * Método para iniciar a aplicação
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         RobotNavigationFrame view = new RobotNavigationFrame();

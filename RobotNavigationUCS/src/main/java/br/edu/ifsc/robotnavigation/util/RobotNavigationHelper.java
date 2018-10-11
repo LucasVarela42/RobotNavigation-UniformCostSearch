@@ -10,19 +10,36 @@ import br.edu.ifsc.robotnavigation.model.Grafo;
 import br.edu.ifsc.robotnavigation.model.Vertice;
 
 /**
- *
- * @author Aluno
+ * Classe Helper
+ * 
+ * Nesta classe é convertido o PanelGrid para uma matriz numerica,
+ * É gerado grafos, arcos, vertices
+ * 
+ * A classe está acoplada, é preciso refatorar num futuro
+ * 
+ * @author Lucas, Matheus
  */
-public class ConvertGrafo {
+public class RobotNavigationHelper {
 
     private static NavigationButton buttons[][];
     private static int repNumeric[][];
     private static Vertice vertices[][];
     private static Vertice verticeInicio;
     private static Vertice verticeFim;
+
+    /**
+     * Construtor vazio
+     */
     public static Grafo grafo;
 
-    public static void convert(PanelGrid panel) {
+    /**
+     * Método estatico para converter o painel para uma matriz numerica
+     * 
+     * A matriz criada é usada para gerar os vertices
+     * 
+     * @param panel
+     */
+    public static void convertPanel(PanelGrid panel) {
         buttons = panel.getButtons();
         repNumeric = new int[buttons.length][buttons.length];
         for (int i = 0; i < buttons.length; i++) {
@@ -36,7 +53,6 @@ public class ConvertGrafo {
                 if (buttons[i][j].getTypeImage().equals("/block.png")) {
                     repNumeric[i][j] = 2;
                 }
-
                 if (buttons[i][j].getTypeImage().equals("/final-position.png")) {
                     repNumeric[i][j] = 3;
                 }
@@ -57,9 +73,7 @@ public class ConvertGrafo {
                 System.out.print(repNumeric[i][j] + "\t");
             }
         }
-
     }
-
     public static void printVertices() {
         for (int i = 0; i < vertices.length; i++) {
             System.out.println();
@@ -69,14 +83,18 @@ public class ConvertGrafo {
         }
         //printArcos(vertices[8][8]);
     }
-
     public static void printArcos(Vertice v) {
         for (Arco a : v.obterArcos()) {
             System.out.println(a);
         }
-
     }
 
+    /**
+     * Método estatico para gerar a matriz de vertices a partir da matriz numerica
+     * 
+     * Guarda o vertice inicial bem como o final
+     * 
+     */
     private static void gerarVertices() {
         vertices = new Vertice[repNumeric.length][repNumeric.length];
         Vertice v = null;
@@ -98,14 +116,28 @@ public class ConvertGrafo {
         }
     }
 
+    /**
+     *
+     * @return verticeInicio
+     */
     public static Vertice getVerticeInicio() {
         return verticeInicio;
     }
 
+    /**
+     *
+     * @return verticeFim
+     */
     public static Vertice getVerticeFim() {
         return verticeFim;
     }
 
+     /**
+     * Método estatico para gerar os Arcos a partir dos vertices gerados
+     * 
+     * Verifica todos os possivel vizinhos
+     * 
+     */
     private static void gerarArcos() {
         for (int i = 0; i < vertices.length; i++) {
             for (int j = 0; j < vertices.length; j++) {
@@ -151,6 +183,11 @@ public class ConvertGrafo {
         System.out.println("Arcos gerados com sucesso!");
     }
 
+    /**
+     * Método estatico para gerar o Grafo
+     * 
+     * @return grafo
+     */
     public static Grafo gerarGrafo() {
         gerarVertices();
         gerarArcos();

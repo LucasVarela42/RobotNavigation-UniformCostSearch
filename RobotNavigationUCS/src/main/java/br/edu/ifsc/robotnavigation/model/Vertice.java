@@ -37,59 +37,114 @@ public class Vertice {
     //definirDistancia(), zerarDistancia() e obterDistancia() devem ser usados.
     private double distancia = Double.POSITIVE_INFINITY;
 
+    /**
+     *
+     * @param rotulo
+     * @param tipo
+     */
     public Vertice(String rotulo, int tipo) {
         this.rotulo = rotulo;
         this.tipo = tipo;
     }
 
+    /**
+     *
+     * @param tipo
+     */
     public Vertice(int tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     *
+     * @param destino
+     * @param peso
+     */
     public void adicionarArco(Vertice destino, double peso) {
         this.arcos.add(new Arco(this, destino, peso));
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Arco> obterArcos() {
         return this.arcos;
     }
 
+    /**
+     *
+     */
     public void visitar() {
         this.visitado++;
     }
 
+    /**
+     *
+     * @return
+     */
     public int obterVisitado() {
         return this.visitado;
     }
 
+    /**
+     *
+     */
     public void zerarVisitas() {
         this.visitado = 0;
     }
 
+    /**
+     *
+     */
     public void zerarDistancia() {
         this.distancia = Double.POSITIVE_INFINITY;
     }
 
+    /**
+     *
+     * @param distancia
+     */
     public void definirDistancia(double distancia) {
         this.distancia = distancia;
     }
 
+    /**
+     *
+     * @return
+     */
     public double obterDistancia() {
         return this.distancia;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTipo() {
         return tipo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRotulo() {
         return rotulo;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getCaminhoLista() {
         return (this.caminhoLista);
     }
 
+    /**
+     *
+     * @param caminhoLista
+     */
     public void setCaminhoLista(ArrayList<String> caminhoLista) {
         if (caminhoLista == null) {
             this.caminhoLista = new ArrayList();

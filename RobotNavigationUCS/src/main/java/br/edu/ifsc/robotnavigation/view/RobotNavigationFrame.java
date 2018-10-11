@@ -47,12 +47,17 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         jLabelGenerated = new javax.swing.JLabel();
         jComboBoxAlgorithm = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabelVisited = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelGrid = new javax.swing.JPanel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Robot Navigation");
+
+        jPanelControl.setToolTipText("");
 
         jButtonStart.setText("Start");
         jButtonStart.setEnabled(false);
@@ -89,6 +94,10 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Algorithm:");
 
+        jLabel6.setText("Visited:");
+
+        jLabelVisited.setText("-");
+
         javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
         jPanelControl.setLayout(jPanelControlLayout);
         jPanelControlLayout.setHorizontalGroup(
@@ -97,23 +106,30 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelExplored))
+                        .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelControlLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelExplored))
+                            .addGroup(jPanelControlLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelGenerated))
+                            .addGroup(jPanelControlLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelCostValue))
+                            .addGroup(jPanelControlLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                        .addComponent(jLabel5))
                     .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelGenerated))
-                    .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCostValue))
-                    .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinnerSize, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                        .addComponent(jLabelVisited)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxAlgorithm, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +150,11 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                     .addComponent(jComboBoxAlgorithm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(3, 3, 3)
-                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addComponent(jButtonGenerate)
+                        .addGap(3, 3, 3)
+                        .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelControlLayout.createSequentialGroup()
                         .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -146,15 +166,15 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabelGenerated)))
-                    .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addComponent(jButtonGenerate)
+                            .addComponent(jLabelGenerated))
                         .addGap(3, 3, 3)
-                        .addComponent(jButtonStart)))
+                        .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabelVisited))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanelControlLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonGenerate, jButtonStart, jComboBoxAlgorithm});
+        jPanelControlLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonGenerate, jComboBoxAlgorithm});
 
         getContentPane().add(jPanelControl, java.awt.BorderLayout.PAGE_END);
 
@@ -214,80 +234,166 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getjButtonStart() {
         return jButtonStart;
     }
 
+    /**
+     *
+     * @param jButtonStart
+     */
     public void setjButtonStart(JButton jButtonStart) {
         this.jButtonStart = jButtonStart;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getjPanelControl() {
         return jPanelControl;
     }
 
+    /**
+     *
+     * @param jPanelControl
+     */
     public void setjPanelControl(JPanel jPanelControl) {
         this.jPanelControl = jPanelControl;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getjPanelGrid() {
         return jPanelGrid;
     }
 
+    /**
+     *
+     * @param jPanelGrid
+     */
     public void setjPanelGrid(JPanel jPanelGrid) {
         this.jPanelGrid = jPanelGrid;
     }
 
+    /**
+     *
+     * @return
+     */
     public JSpinner getjSpinnerSize() {
         return jSpinnerSize;
     }
 
+    /**
+     *
+     * @param jSpinnerSize
+     */
     public void setjSpinnerSize(JSpinner jSpinnerSize) {
         this.jSpinnerSize = jSpinnerSize;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getjButtonGenerate() {
         return jButtonGenerate;
     }
 
+    /**
+     *
+     * @param jButtonGenerate
+     */
     public void setjButtonGenerate(JButton jButtonGenerate) {
         this.jButtonGenerate = jButtonGenerate;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox<String> getjComboBoxAlgorithm() {
         return jComboBoxAlgorithm;
     }
 
+    /**
+     *
+     * @param jComboBoxAlgorithm
+     */
     public void setjComboBoxAlgorithm(JComboBox<String> jComboBoxAlgorithm) {
         this.jComboBoxAlgorithm = jComboBoxAlgorithm;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabelCostValue() {
         return jLabelCostValue;
     }
 
+    /**
+     *
+     * @param jLabelCostValue
+     */
     public void setjLabelCostValue(JLabel jLabelCostValue) {
         this.jLabelCostValue = jLabelCostValue;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabelExplored() {
         return jLabelExplored;
     }
 
+    /**
+     *
+     * @param jLabelExplored
+     */
     public void setjLabelExplored(JLabel jLabelExplored) {
         this.jLabelExplored = jLabelExplored;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabelGenerated() {
         return jLabelGenerated;
     }
 
+    /**
+     *
+     * @param jLabelGenerated
+     */
     public void setjLabelGenerated(JLabel jLabelGenerated) {
         this.jLabelGenerated = jLabelGenerated;
     }
-    
-    
 
+    /**
+     *
+     * @return
+     */
+    public JLabel getjLabelVisited() {
+        return jLabelVisited;
+    }
+
+    /**
+     *
+     * @param jLabelVisited
+     */
+    public void setjLabelVisited(JLabel jLabelVisited) {
+        this.jLabelVisited = jLabelVisited;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -299,9 +405,11 @@ public class RobotNavigationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelCostValue;
     private javax.swing.JLabel jLabelExplored;
     private javax.swing.JLabel jLabelGenerated;
+    private javax.swing.JLabel jLabelVisited;
     private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelGrid;
     private javax.swing.JScrollPane jScrollPane1;

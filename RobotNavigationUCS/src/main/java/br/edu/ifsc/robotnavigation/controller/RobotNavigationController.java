@@ -7,7 +7,7 @@ package br.edu.ifsc.robotnavigation.controller;
 
 import br.edu.ifsc.robotnavigation.util.PanelGrid;
 import br.edu.ifsc.robotnavigation.util.NavigationButton;
-import br.edu.ifsc.robotnavigation.util.ConvertGrafo;
+import br.edu.ifsc.robotnavigation.util.RobotNavigationHelper;
 import br.edu.ifsc.robotnavigation.algorithm.Algoritmos;
 import br.edu.ifsc.robotnavigation.model.Grafo;
 import br.edu.ifsc.robotnavigation.model.Vertice;
@@ -22,8 +22,9 @@ import java.time.Instant;
 import java.util.ArrayList;
 
 /**
- *
- * @author Lucas
+ * Controlador do frame da nossa aplicação
+ * Nesta classe controlamos a os labels e botões.
+ * @author Lucas, Matheus
  */
 public class RobotNavigationController implements ActionListener, MouseListener {
 
@@ -31,6 +32,10 @@ public class RobotNavigationController implements ActionListener, MouseListener 
     private PanelGrid panelGrid;
     private ArrayList<NavigationButton> buttonsGrid = new ArrayList<>();
 
+    /**
+     * Construtor
+     * @param view Frame
+     */
     public RobotNavigationController(RobotNavigationFrame view) {
         this.view = view;
         this.view.getjButtonStart().addActionListener(this);
@@ -96,7 +101,6 @@ public class RobotNavigationController implements ActionListener, MouseListener 
             component.addMouseListener(this);
             buttonsGrid.add((NavigationButton) component);
         }
-
         this.view.getjButtonStart().setEnabled(true);
     }
 
@@ -105,32 +109,31 @@ public class RobotNavigationController implements ActionListener, MouseListener 
         Instant start;
         Instant finish;
         Vertice resultado;
-        ConvertGrafo.convert(panelGrid);
-        grafo = ConvertGrafo.gerarGrafo();
+        RobotNavigationHelper.convertPanel(panelGrid);
+        grafo = RobotNavigationHelper.gerarGrafo();
 
         if (getSelectedAlgorithm() == 0) {
             start = Instant.now();
-            resultado = Algoritmos.custoUniformeGrafo(
-                    grafo,
-                    ConvertGrafo.getVerticeInicio(),
-                    ConvertGrafo.getVerticeFim());
+            resultado = Algoritmos.custoUniformeGrafo(grafo,
+                    RobotNavigationHelper.getVerticeInicio(),
+                    RobotNavigationHelper.getVerticeFim());
             finish = Instant.now();
         } else {
             start = Instant.now();
-            resultado = Algoritmos.custoUniformeArvore(
-                    grafo,
-                    ConvertGrafo.getVerticeInicio(),
-                    ConvertGrafo.getVerticeFim());
+            resultado = Algoritmos.custoUniformeArvore(grafo,
+                    RobotNavigationHelper.getVerticeInicio(),
+                    RobotNavigationHelper.getVerticeFim());
             finish = Instant.now();
         }
 
         long timeElapsed = Duration.between(start, finish).toMillis();
 
         this.view.getjLabelCostValue().setText(String.format("%.2f",
-                ConvertGrafo.getVerticeFim().obterDistancia())
+                RobotNavigationHelper.getVerticeFim().obterDistancia())
                 + " - " + timeElapsed + "ms");
         this.view.getjLabelExplored().setText(String.valueOf(Algoritmos.EXPLORADOS));
         this.view.getjLabelGenerated().setText(String.valueOf(Algoritmos.GERADOS));
+        this.view.getjLabelVisited().setText(String.valueOf(Algoritmos.VIZITADOS));
 
         if (resultado != null) {
             mostrarCaminho(resultado);

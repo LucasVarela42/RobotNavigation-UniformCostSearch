@@ -5,26 +5,30 @@
  */
 package br.edu.ifsc.robotnavigation.util;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 /**
- *
- * @author Aluno
+ * Modelo do PanelGrid
+ * 
+ * Está classe define o estilo da matriz no Frame
+ * 
+ * @author Lucas, Matheus
  */
 public class PanelGrid extends JPanel {
-
     private static int SIZE = 5;
     private static final String BACKGROUND_IMG = "/background.png";
     private static final Dimension BTN_PREF_SIZE = new Dimension(32, 32);
     private NavigationButton button;
     private NavigationButton buttons[][];
 
+    /**
+     *
+     * @param panel
+     * @param side
+     */
     public PanelGrid(JPanel panel, int side) {
         SIZE = side;
         panel.setLayout(new GridLayout(SIZE, SIZE, 0, 0));
@@ -49,6 +53,10 @@ public class PanelGrid extends JPanel {
         }
     }
 
+    /**
+     *
+     * @return buttons
+     */
     public NavigationButton[][] getButtons() {
         return buttons;
     }
